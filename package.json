@@ -9,7 +9,7 @@
   },
   "scripts": {
     "dev": "electron src/main.js",
-    "pack": "electron-builder --windows --linux appimage deb pacman rpm tar.gz"
+    "pack": "electron-builder --windows NSIS --linux appimage pacman tar.gz"
   },
   "homepage": "https://kaiheila.cn",
   "main": "src/main.js",
@@ -44,5 +44,11 @@
     "dmg-license": "^1.0.11",
     "electron": "^19.0.4",
     "electron-builder": "^23.0.3"
+  },
+  "build": {
+    "appId": "cn.kaiheila.pc",
+	"linux": {
+	  "maintainer": "DustyAngel47"
+	}
   }
 }
