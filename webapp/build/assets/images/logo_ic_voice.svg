@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="18px" height="18px" viewBox="0 0 18 18" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 59.1 (86144) - https://sketch.com -->
+    <title>logo_ic_voice</title>
+    <desc>Created with Sketch.</desc>
+    <g id="logo_ic_voice" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g transform="translate(1.000000, 1.000000)">
+            <circle id="Oval-2" stroke="#2A2E4A" stroke-width="2" fill="#7881C0" cx="8" cy="8" r="8"></circle>
+            <g id="Group" transform="translate(4.000000, 5.000000)" fill="#FFFFFF" fill-rule="nonzero">
+                <polygon id="Shape" points="3.99756005 0.0337130451 1.56072062 1.44041297 0.0565807465 1.44041297 0.0565807465 4.51813655 1.56072062 4.51813655 3.99756005 5.92458426"></polygon>
+                <g transform="translate(4.539911, 0.672579)" id="Rectangle-path">
+                    <polygon points="0.0922672096 0.832737435 0.723019773 0.832737435 0.723019773 3.78031689 0.0922672096 3.78031689"></polygon>
+                    <polygon points="1.38736768 0.457101811 2.01824023 0.457101811 2.01824023 4.15637288 1.38736768 4.15637288"></polygon>
+                    <polygon points="2.63831427 0.0816343311 3.2693068 0.0816343311 3.2693068 4.53158814 2.63831427 4.53158814"></polygon>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

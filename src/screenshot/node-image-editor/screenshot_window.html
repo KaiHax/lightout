@@ -1,0 +1,881 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>开黑啦-截图</title>
+    <style>
+      html,
+      body {
+        width: 100%;
+        height: 100%;
+        padding: 0;
+        margin: 0;
+        overflow: hidden;
+        /* background-color: gray; */
+        user-select: none;
+        color: #333436;
+        font-family: "PingFang SC", "Microsoft YaHei New", "微软雅黑",
+          "Microsoft Yahei", "Microsoft JhengHei", "宋体", "SimSun",
+          "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      #container {
+        position: relative;
+      }
+
+      #container canvas,
+      #js-canvas {
+        position: absolute;
+        display: true;
+        z-index: 1;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+      }
+
+      #imgEditToolbar {
+        position: absolute;
+        left: 100px;
+        top: 100px;
+        color: red;
+        z-index: 5;
+        visibility: hidden;
+      }
+
+      #dpiTextToolBar {
+        position: absolute;
+        padding: 0 8px;
+        left: 50px;
+        top: 50px;
+        color: #333436;
+        height: 24px;
+        line-height: 24px;
+        background: #ffffff;
+        border-radius: 6px;
+        font-size: 12px;
+        z-index: 5;
+        visibility: hidden;
+      }
+
+      #js-canvas-paint {
+        position: absolute;
+        display: true;
+        z-index: 4;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+      }
+
+      #js-canvas-paint-div {
+        position: absolute;
+        z-index: 3;
+        top: 0;
+        left: 0;
+        visibility: hidden;
+      }
+
+      .screenshot-toolbar {
+        padding: 0 12px;
+        display: flex;
+        align-items: center;
+        height: 40px;
+        /* background: #FFFFFF; */
+        background-color: #393c41;
+        box-shadow: 0px 2px 6px 0px rgba(0, 0, 0, 0.12);
+        border-radius: 6px;
+      }
+
+      .tool-button {
+        display: inline-block;
+        margin-right: 10px;
+        width: 28px;
+        height: 28px;
+      }
+
+      .tool-button:last-child {
+        margin-right: 0;
+      }
+
+      .tool-button input {
+        display: none;
+      }
+
+      .tool-button i {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        height: 100%;
+        border-radius: 4px;
+        cursor: pointer;
+        color: rgba(230, 234, 240, 0.7);
+      }
+
+      .tool-button i:hover {
+        background-color: rgba(102, 104, 107, 0.2);
+        color: rgba(230, 234, 240);
+      }
+
+      .screenshot-toolbar .tool-button input:checked + i {
+        background-color: rgba(102, 104, 107, 0.4);
+        color: #fff;
+      }
+
+      .tool-button.disabled i {
+        opacity: 0.5;
+        cursor: not-allowed;
+        background-color: transparent !important;
+      }
+
+      .toolbar-group {
+        position: relative;
+        display: flex;
+        margin-right: 16px;
+      }
+
+      .toolbar-group::after {
+        content: "";
+        position: absolute;
+        top: 50%;
+        margin-top: -12px;
+        right: -8px;
+        width: 1px;
+        height: 24px;
+        background-color: rgba(229, 229, 234, 0.1);
+      }
+
+      .toolbar-group:last-child {
+        margin-right: 0;
+      }
+
+      .toolbar-group:last-child::after {
+        display: none;
+      }
+
+      .toolbar-group.nosplit {
+        margin-right: 0;
+      }
+
+      .toolbar-group.nosplit::after {
+        display: none;
+      }
+
+      .split-line {
+        margin: 0 10px 0 10px;
+        width: 1px;
+        height: 24px;
+        background-color: rgba(229, 229, 234, 0.1);
+      }
+
+      /* 子菜单 */
+      .toolbar-submenu {
+        padding: 0 12px;
+        position: absolute;
+        display: flex;
+        align-items: center;
+        height: 40px;
+        background: #393c41;
+        box-shadow: 0px 2px 6px 0px rgba(0, 0, 0, 0.12);
+        border-radius: 6px;
+        z-index: 5;
+      }
+
+      .subtool-button {
+        width: 18px;
+        height: 18px;
+        margin-right: 6px;
+      }
+
+      .subtool-button:last-child {
+        margin-right: 0;
+      }
+
+      .subtool-button input {
+        display: none;
+      }
+
+      .subtool-button i {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        height: 100%;
+        border-radius: 4px;
+        cursor: pointer;
+      }
+
+      /* 画笔粗细 */
+      .subtool-button input:checked + i .line-weight {
+        background-color: #4285f4;
+      }
+
+      .line-weight {
+        display: inline-block;
+        background-color: rgba(230, 234, 240, 0.7);
+        border-radius: 50%;
+      }
+
+      .line-weight.line4 {
+        height: 4px;
+        width: 4px;
+      }
+
+      .line-weight.line8 {
+        height: 8px;
+        width: 8px;
+      }
+
+      .line-weight.line12 {
+        height: 12px;
+        width: 12px;
+      }
+
+      /* 画笔颜色 */
+      .line-color {
+        width: 18px;
+        height: 18px;
+        border-radius: 4px;
+        background-size: cover;
+        background-position: center;
+      }
+
+      .subtool-button input:checked + i .line-color {
+        background-image: url("./assets/images/color_selected.svg");
+      }
+
+      .subtool-button input[value="white"]:checked + i .line-color {
+        background-image: url("./assets/images/color_selected_gray.svg");
+      }
+
+      .line-color.red {
+        background-color: #f3493b;
+      }
+
+      .line-color.yellow {
+        background-color: #ffc700;
+      }
+
+      .line-color.green {
+        background-color: #34d45f;
+      }
+
+      .line-color.blue {
+        background-color: #5e9afe;
+      }
+
+      .line-color.black {
+        background-color: #000000;
+      }
+
+      .line-color.gray {
+        background-color: #999ba1;
+      }
+
+      .line-color.white {
+        background-color: #fff;
+        /* border: 1px solid #66686B; */
+      }
+
+      .submenu-arrow.top {
+        top: -12px;
+        border-top-color: transparent;
+      }
+
+      .submenu-arrow.top::after {
+        border-top-color: transparent;
+      }
+
+      .submenu-arrow.bottom {
+        bottom: -12px;
+        border-bottom-color: transparent;
+      }
+
+      .submenu-arrow.bottom::after {
+        border-bottom-color: transparent;
+      }
+
+      /* 子菜单箭头 */
+      .submenu-arrow {
+        position: absolute;
+        border: 6px solid #393c41;
+        border-left-color: transparent;
+        border-right-color: transparent;
+        /* box-shadow: 0px 2px 6px 0px rgba(0, 0, 0, 0.12); */
+      }
+
+      /* 子菜单箭头 - 阴影 */
+      .submenu-arrow::after {
+        content: "";
+        border: 6px solid rgba(0, 0, 0, 0.2);
+        border-left-color: transparent;
+        border-right-color: transparent;
+        position: absolute;
+        top: -6px;
+        left: 50%;
+        margin-left: -5px;
+        z-index: -1;
+        filter: blur(4px);
+      }
+
+      /* selector */
+      .selector {
+      }
+
+      .selector-select {
+        position: relative;
+        padding-right: 24px;
+        width: 80px;
+        height: 26px;
+        border-radius: 4px;
+        border: 1px solid rgba(229, 229, 234, 0.1);
+        font-size: 14px;
+        line-height: 26px;
+        text-align: center;
+        color: #e6eaf0;
+      }
+
+      .selector-select:hover {
+        border-color: #6666cc;
+      }
+
+      .selector-select:active {
+        border-color: #6666cc;
+        box-shadow: 0 0 0 3px rgba(198, 198, 255, 0.5);
+      }
+
+      .selector-select::after {
+        position: absolute;
+        top: 50%;
+        margin-top: -3px;
+        right: 6px;
+        content: "";
+        border: 6px solid #e6eaf0;
+        border-left-color: transparent;
+        border-right-color: transparent;
+        border-bottom-color: transparent;
+      }
+
+      .selector-options {
+        padding: 8px;
+        position: fixed;
+        width: 80px;
+        background-color: #42464c;
+        border-radius: 6px;
+        font-size: 14px;
+        color: #e6eaf0;
+        /* box-shadow: 0px 2px 6px 0px #CACED5; */
+      }
+
+      .selector-option-item {
+        padding: 0 8px;
+        height: 32px;
+        line-height: 32px;
+        border-radius: 6px;
+      }
+
+      .selector-option-item:hover {
+        background-color: rgba(102, 104, 107, 0.2);
+      }
+
+      /* 截图背景 */
+      .screenshot-background {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+      }
+
+      #screenshot-img {
+        width: 100%;
+        height: 100%;
+      }
+
+      .screenshot-shade {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5);
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="screenshot-background">
+      <img id="screenshot-img" />
+      <div class="screenshot-shade"></div>
+    </div>
+    <div id="container">
+      <canvas id="js-canvas" class="image-canvas"></canvas>
+      <div id="dpiTextToolBar" class="row">
+        <label>分辨率</label>
+      </div>
+      <div id="js-canvas-paint-div" class="row">
+        <canvas id="js-canvas-paint" class="image-canvas"></canvas>
+      </div>
+      <div id="imgEditToolbar" class="screenshot-toolbar">
+        <div id="brush_list" class="toolbar-group">
+          <div class="tool-button">
+            <label for="rect"
+              ><input type="radio" id="rect" name="drawType" value="rect" /><i>
+                <svg
+                  width="24px"
+                  height="24px"
+                  viewBox="0 0 24 24"
+                  version="1.1"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <title>矩形</title>
+                  <g
+                    id="矩形"
+                    stroke="none"
+                    stroke-width="1"
+                    fill="none"
+                    fill-rule="evenodd"
+                  >
+                    <rect
+                      id="图标占位"
+                      x="0"
+                      y="0"
+                      width="24"
+                      height="24"
+                    ></rect>
+                    <path
+                      d="M19,3 C20.1045695,3 21,3.8954305 21,5 L21,19 C21,20.1045695 20.1045695,21 19,21 L5,21 C3.8954305,21 3,20.1045695 3,19 L3,5 C3,3.8954305 3.8954305,3 5,3 L19,3 Z M19,5 L5,5 L5,19 L19,19 L19,5 Z"
+                      fill="currentColor"
+                      fill-rule="nonzero"
+                    ></path>
+                  </g>
+                </svg> </i
+            ></label>
+          </div>
+          <div class="tool-button">
+            <label for="eclipse">
+              <input
+                type="radio"
+                id="eclipse"
+                name="drawType"
+                value="eclipse"
+              /><i>
+                <svg
+                  width="24px"
+                  height="24px"
+                  viewBox="0 0 24 24"
+                  version="1.1"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <title>圆形</title>
+                  <g
+                    id="圆形"
+                    stroke="none"
+                    stroke-width="1"
+                    fill="none"
+                    fill-rule="evenodd"
+                  >
+                    <rect
+                      id="图标占位"
+                      x="0"
+                      y="0"
+                      width="24"
+                      height="24"
+                    ></rect>
+                    <path
+                      d="M12,2 C17.5228475,2 22,6.4771525 22,12 C22,17.5228475 17.5228475,22 12,22 C6.4771525,22 2,17.5228475 2,12 C2,6.4771525 6.4771525,2 12,2 Z M12,4 C7.581722,4 4,7.581722 4,12 C4,16.418278 7.581722,20 12,20 C16.418278,20 20,16.418278 20,12 C20,7.581722 16.418278,4 12,4 Z"
+                      id="椭圆形"
+                      fill="currentColor"
+                      fill-rule="nonzero"
+                    ></path>
+                  </g>
+                </svg>
+              </i>
+            </label>
+          </div>
+          <div class="tool-button">
+            <label for="arrow"
+              ><input
+                type="radio"
+                id="arrow"
+                name="drawType"
+                value="arrow" /><i>
+                <svg
+                  width="24px"
+                  height="24px"
+                  viewBox="0 0 24 24"
+                  version="1.1"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <title>箭头</title>
+                  <g
+                    id="箭头"
+                    stroke="none"
+                    stroke-width="1"
+                    fill="none"
+                    fill-rule="evenodd"
+                  >
+                    <rect
+                      id="图标占位"
+                      x="0"
+                      y="0"
+                      width="24"
+                      height="24"
+                    ></rect>
+                    <path
+                      d="M19,4 L19.0193545,4.00018615 C19.042681,4.00063489 19.0659949,4.00189498 19.0892501,4.00396641 L19,4 C19.0506203,4 19.1003621,4.00376119 19.1489612,4.01101934 C19.165949,4.01362808 19.1833753,4.01670217 19.2007258,4.02024007 C19.2227461,4.0246398 19.2444365,4.02983363 19.2658396,4.03572097 C19.2814633,4.04009773 19.2968513,4.04472872 19.3121425,4.04973809 C19.3317977,4.05612249 19.3515792,4.06331574 19.3710585,4.07110396 C19.3887956,4.07819642 19.4060985,4.08567905 19.4232215,4.09367336 C19.4438914,4.10337664 19.4642939,4.11379392 19.484277,4.12487577 C19.4963944,4.13149883 19.5086131,4.13860692 19.5207088,4.14599545 C19.546275,4.1617187 19.5711307,4.17849009 19.5951593,4.19631351 C19.602603,4.20175344 19.6098424,4.20728448 19.6170223,4.21292769 C19.6801818,4.26255171 19.7374483,4.31981825 19.787214,4.38324992 L19.7071068,4.29289322 C19.7425008,4.32828727 19.774687,4.36567442 19.8036654,4.40469339 C19.8215099,4.42886931 19.8382813,4.45372505 19.8539326,4.47933981 C19.8613931,4.49138689 19.8685012,4.50360556 19.8753288,4.5159379 C19.8862061,4.53570605 19.8966234,4.5561086 19.9063462,4.57690085 C19.914321,4.5939015 19.9218036,4.61120435 19.9287745,4.62866398 C19.9366843,4.6484208 19.9438775,4.66820232 19.9504533,4.68826359 C19.9552713,4.70314866 19.9599023,4.71853672 19.9641549,4.73400703 C19.9701664,4.75556352 19.9753602,4.77725392 19.9798348,4.7992059 C19.9832978,4.81662474 19.9863719,4.83405099 19.9889822,4.85153313 C19.9905825,4.86176411 19.9920139,4.87254508 19.9932723,4.88337887 L19.9962979,4.9137692 C19.9978436,4.93173451 19.9989053,4.94973363 19.9994829,4.96774538 L20,5 L20,14 C20,14.5522847 19.5522847,15 19,15 C18.4871642,15 18.0644928,14.6139598 18.0067277,14.1166211 L18,14 L18,7.414 L4.70710678,20.7071068 C4.31658249,21.0976311 3.68341751,21.0976311 3.29289322,20.7071068 C2.93240926,20.3466228 2.90467972,19.7793918 3.20970461,19.3871006 L3.29289322,19.2928932 L16.584,6 L10,6 C9.48716416,6 9.06449284,5.61395981 9.00672773,5.11662113 L9,5 C9,4.48716416 9.38604019,4.06449284 9.88337887,4.00672773 L10,4 L19,4 Z"
+                      id="形状结合"
+                      fill="currentColor"
+                      fill-rule="nonzero"
+                    ></path>
+                  </g>
+                </svg> </i
+            ></label>
+          </div>
+          <div class="tool-button">
+            <label for="pen"
+              ><input type="radio" id="pen" name="drawType" value="pen" /><i
+                ><svg
+                  width="24px"
+                  height="24px"
+                  viewBox="0 0 24 24"
+                  version="1.1"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <title>笔</title>
+                  <g
+                    id="笔"
+                    stroke="none"
+                    stroke-width="1"
+                    fill="none"
+                    fill-rule="evenodd"
+                  >
+                    <rect
+                      id="图标占位"
+                      x="0"
+                      y="0"
+                      width="24"
+                      height="24"
+                    ></rect>
+                    <path
+                      d="M16.1189019,3.46346435 C16.8999505,2.68241577 18.1662805,2.68241577 18.947329,3.46346435 L18.947329,3.46346435 L20.3615426,4.87767791 C21.1425912,5.6587265 21.1425912,6.92505645 20.3615426,7.70610504 L20.3615426,7.70610504 L7.68678353,20.3808641 C7.38790009,20.6797475 7.00200771,20.8762534 6.58449511,20.9421765 L6.58449511,20.9421765 L4.22602947,21.3145658 C3.40773984,21.4437694 2.63964479,20.8851548 2.51044116,20.0668652 C2.48596709,19.9118628 2.48596709,19.7539799 2.51044116,19.5989775 L2.51044116,19.5989775 L2.88283047,17.2405118 C2.94875352,16.8229992 3.14525941,16.4371069 3.44414284,16.1382234 L3.44414284,16.1382234 Z M15.4480856,6.96267791 L4.8583564,17.552437 L4.5932124,19.2305314 L6.27256997,18.9666506 L16.8620856,8.37667791 L15.4480856,6.96267791 Z"
+                      id="形状结合"
+                      fill="currentColor"
+                      fill-rule="nonzero"
+                    ></path>
+                  </g></svg></i
+            ></label>
+          </div>
+          <div class="tool-button">
+            <label for="mosaic"
+              ><input
+                type="radio"
+                id="mosaic"
+                name="drawType"
+                value="mosaic" /><i>
+                <svg
+                  width="24px"
+                  height="24px"
+                  viewBox="0 0 24 24"
+                  version="1.1"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <title>马赛克</title>
+                  <g
+                    id="马赛克"
+                    stroke="none"
+                    stroke-width="1"
+                    fill="none"
+                    fill-rule="evenodd"
+                  >
+                    <rect
+                      id="图标占位"
+                      x="0"
+                      y="0"
+                      width="24"
+                      height="24"
+                    ></rect>
+                    <path
+                      d="M5,21 C3.8954305,21 3,20.1045695 3,19 L3,5 C3,3.8954305 3.8954305,3 5,3 L19,3 C20.1045695,3 21,3.8954305 21,5 L21,19 C21,20.0543618 20.1841222,20.9181651 19.1492623,20.9945143 L19,21 L19,21 L5,21 Z M15,15 L9,15 L9,9 L15,9 L15,4 L9,4 L9,9 L4,9 L4,15 L9,15 L9,20 L15,20 L15,15 L20,15 L20,9 L15,9 L15,15 Z"
+                      id="形状结合"
+                      fill="currentColor"
+                      fill-rule="nonzero"
+                    ></path>
+                  </g>
+                </svg> </i
+            ></label>
+          </div>
+          <div class="tool-button">
+            <label for="text"
+              ><input type="radio" id="text" name="drawType" value="text" /><i>
+                <svg
+                  width="24px"
+                  height="24px"
+                  viewBox="0 0 24 24"
+                  version="1.1"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <title>文字</title>
+                  <g
+                    id="文字"
+                    stroke="none"
+                    stroke-width="1"
+                    fill="none"
+                    fill-rule="evenodd"
+                  >
+                    <rect
+                      id="图标占位"
+                      x="0"
+                      y="0"
+                      width="24"
+                      height="24"
+                    ></rect>
+                    <path
+                      d="M19,4 C19.5522847,4 20,4.44771525 20,5 C20,5.55228475 19.5522847,6 19,6 L13,6 L13,20 C13,20.5522847 12.5522847,21 12,21 C11.4477153,21 11,20.5522847 11,20 L11,6 L5,6 C4.44771525,6 4,5.55228475 4,5 C4,4.44771525 4.44771525,4 5,4 L19,4 Z"
+                      id="形状结合"
+                      fill="currentColor"
+                      fill-rule="nonzero"
+                    ></path>
+                  </g>
+                </svg> </i
+            ></label>
+          </div>
+        </div>
+        <!-- <div class="row">
+                <input type="radio" id="blue" name="lineColor" value="blue" checked><label for="blue">blue</label>
+                <input type="radio" id="red" name="lineColor" value="red"><label for="red">red</label>
+                <input type="radio" id="yellow" name="lineColor" value="yellow"><label for="yellow">yellow</label>
+            </div> -->
+        <!-- <div class="row">
+                <input type="radio" id="line4" name="lineWidth" value="4" checked><label for="line4">4</label>
+                <input type="radio" id="line8" name="lineWidth" value="8"><label for="line8">8</label>
+                <input type="radio" id="line12" name="lineWidth" value="12"><label for="line12">12</label>
+            </div> -->
+        <!-- <div class="row">
+                <input type="radio" id="textFontSize20" name="textFontSize" value="20" checked><label
+                    for="line4">字体小</label>
+                <input type="radio" id="textFontSize40" name="textFontSize" value="40"><label for="line8">字体中</label>
+                <input type="radio" id="textFontSize80" name="textFontSize" value="80"><label for="line12">字体大</label>
+            </div> -->
+        <!-- <div class="row">
+                <button id="btnUndo" type="button">撤销</button>
+                <button id="btnSaveToFile" type="button">保存</button>
+                <button id="btnExit" type="button">退出</button>
+                <button id="btnSaveToClipboard" type="button">完成</button>
+            </div> -->
+        <!-- <div class="split-line"></div> -->
+        <div class="toolbar-group">
+          <div id="btnUndo" class="tool-button disabled">
+            <i>
+              <svg
+                width="24px"
+                height="24px"
+                viewBox="0 0 24 24"
+                version="1.1"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <title>撤销</title>
+                <g
+                  id="撤销"
+                  stroke="none"
+                  stroke-width="1"
+                  fill="none"
+                  fill-rule="evenodd"
+                >
+                  <rect id="图标占位" x="0" y="0" width="24" height="24"></rect>
+                  <path
+                    d="M9.20710678,11.5394949 L9.28481315,11.6267157 C9.5956386,12.0192334 9.56973648,12.5910788 9.20710678,12.9537085 C8.81658249,13.3442328 8.18341751,13.3442328 7.79289322,12.9537085 L7.79289322,12.9537085 L3.55025253,8.71106781 L3.47254617,8.623847 C3.16172071,8.23132934 3.18762283,7.65948395 3.55025253,7.29685425 L3.55025253,7.29685425 L7.79289322,3.05421356 L7.88011403,2.9765072 C8.27263169,2.66568174 8.84447708,2.69158386 9.20710678,3.05421356 L9.20710678,3.05421356 L9.28481315,3.14143438 C9.5956386,3.53395203 9.56973648,4.10579743 9.20710678,4.46842712 L9.20710678,4.46842712 L6.67435931,6.99932034 L14.5,7 C18.0898509,7 21,9.91014913 21,13.5 C21,17.0118106 18.2150038,19.8731506 14.7331341,19.995897 L14.5,20 L11,20 C10.4477153,20 10,19.5522847 10,19 C10,18.4871642 10.3860402,18.0644928 10.8833789,18.0067277 L11,18 L14.5,18 C16.9852814,18 19,15.9852814 19,13.5 C19,11.0857267 17.0987635,9.11551091 14.7118357,9.00489799 L14.5,9 L6.66735931,8.99932034 L9.20710678,11.5394949 Z"
+                    id="形状结合"
+                    fill="currentColor"
+                    fill-rule="nonzero"
+                  ></path>
+                </g>
+              </svg>
+            </i>
+          </div>
+          <div id="btnSaveToFile" class="tool-button">
+            <i>
+              <svg
+                width="24px"
+                height="24px"
+                viewBox="0 0 24 24"
+                version="1.1"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <title>下载</title>
+                <g
+                  id="下载"
+                  stroke="none"
+                  stroke-width="1"
+                  fill="none"
+                  fill-rule="evenodd"
+                >
+                  <rect id="图标占位" x="0" y="0" width="24" height="24"></rect>
+                  <path
+                    d="M18,18 C18.5522847,18 19,18.4477152 19,19 C19,19.5522847 18.5522847,20 18,20 L6,20 C5.44771525,20 5,19.5522847 5,19 C5,18.4477152 5.44771525,18 6,18 L18,18 Z M12.0026407,3 C12.5549254,3 13.0026407,3.44771525 13.0026407,4 L13.0032814,12.828 L16.5381746,9.29289322 C16.9008043,8.93026352 17.4726497,8.9043614 17.8651673,9.21518686 L17.9523882,9.29289322 C18.3150179,9.65552292 18.34092,10.2273683 18.0300945,10.619886 L17.9523882,10.7071068 L12.7097475,15.9497475 C12.3471178,16.3123772 11.7752724,16.3382793 11.3827547,16.0274538 L11.2955339,15.9497475 L6.05289322,10.7071068 C5.66236893,10.3165825 5.66236893,9.68341751 6.05289322,9.29289322 C6.41552292,8.93026352 6.98736831,8.9043614 7.37988597,9.21518686 L7.46710678,9.29289322 L11.0032814,12.828 L11.0026407,4 C11.0026407,3.44771525 11.4503559,3 12.0026407,3 Z"
+                    id="形状结合"
+                    fill="currentColor"
+                  ></path>
+                </g>
+              </svg>
+            </i>
+          </div>
+        </div>
+        <!-- <div class="split-line"></div> -->
+        <div class="toolbar-group">
+          <div id="btnExit" class="tool-button">
+            <i>
+              <svg
+                width="24px"
+                height="24px"
+                viewBox="0 0 24 24"
+                version="1.1"
+                xmlns="http://www.w3.org/2000/svg"
+                xmlns:xlink="http://www.w3.org/1999/xlink"
+              >
+                <title>删除</title>
+                <g
+                  id="删除"
+                  stroke="none"
+                  stroke-width="1"
+                  fill="none"
+                  fill-rule="evenodd"
+                >
+                  <rect id="图标占位" x="0" y="0" width="24" height="24"></rect>
+                  <path
+                    d="M4.92893219,4.92893219 C5.31945648,4.5384079 5.95262146,4.5384079 6.34314575,4.92893219 L11.9992929,10.5864935 L17.6568542,4.92893219 C18.0473785,4.5384079 18.6805435,4.5384079 19.0710678,4.92893219 C19.4615921,5.31945648 19.4615921,5.95262146 19.0710678,6.34314575 L13.4135065,12.0007071 L19.0710678,17.6568542 C19.4615921,18.0473785 19.4615921,18.6805435 19.0710678,19.0710678 C18.6805435,19.4615921 18.0473785,19.4615921 17.6568542,19.0710678 L11.9992929,13.4149207 L6.34314575,19.0710678 C5.95262146,19.4615921 5.31945648,19.4615921 4.92893219,19.0710678 C4.5384079,18.6805435 4.5384079,18.0473785 4.92893219,17.6568542 L10.5850793,12.0007071 L4.92893219,6.34314575 C4.5384079,5.95262146 4.5384079,5.31945648 4.92893219,4.92893219 Z"
+                    id="路径"
+                    fill="#EA4335"
+                  ></path>
+                </g>
+              </svg>
+            </i>
+          </div>
+          <div id="btnSaveToClipboard" class="tool-button">
+            <i>
+              <svg
+                width="24px"
+                height="24px"
+                viewBox="0 0 24 24"
+                version="1.1"
+                xmlns="http://www.w3.org/2000/svg"
+                xmlns:xlink="http://www.w3.org/1999/xlink"
+              >
+                <title>保存</title>
+                <g
+                  id="保存"
+                  stroke="none"
+                  stroke-width="1"
+                  fill="none"
+                  fill-rule="evenodd"
+                >
+                  <rect id="图标占位" x="0" y="0" width="24" height="24"></rect>
+                  <path
+                    d="M9.79289322,19.1568542 C9.40236893,19.5473785 8.76920395,19.5473785 8.37867966,19.1568542 L2.72182541,13.5 C2.33130112,13.1094757 2.33130112,12.4763107 2.72182541,12.0857864 C3.1123497,11.6952621 3.74551468,11.6952621 4.13603897,12.0857864 L9.08507933,17.036241 L19.6923882,6.42893219 C20.0829124,6.0384079 20.7160774,6.0384079 21.1066017,6.42893219 C21.497126,6.81945648 21.497126,7.45262146 21.1066017,7.84314575 L9.79289322,19.1568542 Z"
+                    id="路径"
+                    fill="#34A853"
+                  ></path>
+                </g>
+              </svg>
+            </i>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="brush_submenu" class="toolbar-submenu" style="display: none">
+      <div id="submenu_arrow" class="submenu-arrow"></div>
+      <div id="brush_weight" class="toolbar-group">
+        <div class="subtool-button">
+          <label for="line4">
+            <input type="radio" id="line4" name="lineWidth" value="4" checked />
+            <i>
+              <span class="line-weight line4"></span>
+            </i>
+          </label>
+        </div>
+        <div class="subtool-button">
+          <label for="line8">
+            <input type="radio" id="line8" name="lineWidth" value="8" />
+            <i>
+              <span class="line-weight line8"></span>
+            </i>
+          </label>
+        </div>
+        <div class="subtool-button">
+          <label for="line12">
+            <input type="radio" id="line12" name="lineWidth" value="12" />
+            <i>
+              <span class="line-weight line12"></span>
+            </i>
+          </label>
+        </div>
+      </div>
+      <div id="brush_font_size" class="toolbar-group"></div>
+      <div id="brush_color" class="toolbar-group">
+        <div class="subtool-button">
+          <label for="red">
+            <input
+              type="radio"
+              id="red"
+              name="lineColor"
+              value="#F3493B"
+              checked
+            />
+            <i>
+              <span class="line-color red"></span>
+            </i>
+          </label>
+        </div>
+        <div class="subtool-button">
+          <label for="yellow">
+            <input type="radio" id="yellow" name="lineColor" value="#FFC700" />
+            <i>
+              <span class="line-color yellow"></span>
+            </i>
+          </label>
+        </div>
+        <div class="subtool-button">
+          <label for="green">
+            <input type="radio" id="green" name="lineColor" value="#34D45F" />
+            <i>
+              <span class="line-color green"></span>
+            </i>
+          </label>
+        </div>
+        <div class="subtool-button">
+          <label for="blue">
+            <input type="radio" id="blue" name="lineColor" value="#5E9AFE" />
+            <i>
+              <span class="line-color blue"></span>
+            </i>
+          </label>
+        </div>
+        <div class="subtool-button">
+          <label for="black">
+            <input type="radio" id="black" name="lineColor" value="black" />
+            <i>
+              <span class="line-color black"></span>
+            </i>
+          </label>
+        </div>
+        <div class="subtool-button">
+          <label for="white">
+            <input type="radio" id="white" name="lineColor" value="white" />
+            <i>
+              <span class="line-color white"></span>
+            </i>
+          </label>
+        </div>
+      </div>
+    </div>
+    <script src="./toolbar-render.js"></script>
+    <!-- <script src="./fabric.js"></script> -->
+    <!-- <script src="./screenshot-window.js"></script> -->
+    <script src="./bundle.js"></script>
+  </body>
+</html>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 61 (89581) - https://sketch.com -->
+    <title>图标标识/个人设置/授权</title>
+    <desc>Created with Sketch.</desc>
+    <g id="图标标识/个人设置/授权" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <rect id="矩形" x="0" y="0" width="24" height="24"></rect>
+        <rect id="矩形备份-9" fill="#66686B" transform="translate(8.814621, 17.510408) rotate(-135.000000) translate(-8.814621, -17.510408) " x="6.3146212" y="16.5104076" width="5" height="2" rx="1"></rect>
+        <rect id="矩形备份-9" fill="#66686B" transform="translate(11.643048, 14.681981) rotate(-135.000000) translate(-11.643048, -14.681981) " x="9.14304833" y="13.6819805" width="5" height="2" rx="1"></rect>
+        <path d="M11.9966017,2.20710678 C12.5488865,2.20710678 12.9966017,2.65482203 12.9966017,3.20710678 L12.9977881,12.3073659 C15.2794373,12.7710945 16.9966017,14.788568 16.9966017,17.2071068 C16.9966017,19.9685305 14.7580255,22.2071068 11.9966017,22.2071068 C9.23517797,22.2071068 6.99660172,19.9685305 6.99660172,17.2071068 C6.99660172,14.7882153 8.71426708,12.770506 10.9964137,12.3071631 L10.9966017,3.20710678 C10.9966017,2.65482203 11.444317,2.20710678 11.9966017,2.20710678 Z" id="形状结合" fill="#BBBEC4" transform="translate(11.996602, 12.207107) rotate(-135.000000) translate(-11.996602, -12.207107) "></path>
+        <circle id="椭圆形" fill="#66686B" transform="translate(15.538427, 8.671573) rotate(-135.000000) translate(-15.538427, -8.671573) " cx="15.5384271" cy="8.67157288" r="2"></circle>
+    </g>
+</svg>

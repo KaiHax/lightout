@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="zh">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>message-box</title>
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+
+      html {
+        height: 100%;
+        width: 100%;
+      }
+
+      body {
+        width: 100%;
+        margin: 0;
+        height: 100%;
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+      }
+
+      .tray_box_bottom_text {
+        cursor: pointer;
+      }
+
+      .tray_box_bottom_text:hover {
+        color: #5490f5;
+      }
+
+      .tray_parent {
+        background-color: #f2f3f5;
+        border-radius: 6px;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        border: 1px solid #e5e5ea;
+      }
+
+      .tray_box_title {
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        padding-left: 18px;
+        padding-right: 16px;
+        height: 40px;
+      }
+
+      .tray_title_count {
+        font-size: 14px;
+        font-weight: 600;
+        color: #333436;
+      }
+
+      .tray_title_setting {
+        width: 20px;
+        height: 20px;
+        background-image: url("./setting.png");
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center center;
+        cursor: pointer;
+      }
+
+      .tray_title_setting:hover {
+        width: 20px;
+        height: 20px;
+        background-image: url("./settingGray.png");
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center center;
+      }
+
+      .tray_box {
+        width: 260px;
+        background-color: #ffffff;
+        border-radius: 6px;
+        display: flex;
+        flex-direction: column;
+        /* padding-top: 4px;
+            padding-bottom: 4px; */
+      }
+
+      .tray_box_bottom {
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        height: 36px;
+        line-height: 36px;
+        text-align: center;
+        font-size: 14px;
+        font-weight: 400;
+        color: #4285f4;
+      }
+
+      .tray_friend_box {
+        cursor: pointer;
+        width: 260px;
+        height: 36px;
+        background: #ffffff;
+        border-radius: 6px;
+        margin-top: 4px;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        padding-left: 13px;
+        padding-right: 12px;
+        display: none;
+      }
+
+      .tray_friend_box_left {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        height: 36px;
+        line-height: 36px;
+      }
+
+      .friend_box_left_icon {
+        width: 30px;
+        height: 30px;
+        background-image: url("./friend.png");
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center center;
+      }
+
+      .friend_box_left_text {
+        font-size: 14px;
+        font-weight: 400;
+        color: #333436;
+        margin-left: 9px;
+      }
+
+      .tray_box_right {
+        height: 16px;
+        background: #ea4335;
+        text-align: center;
+        line-height: 16px;
+        font-size: 12px;
+        font-weight: 600;
+        color: #ffffff;
+        border-radius: 100px;
+        padding-left: 4px;
+        padding-right: 4px;
+        min-width: 16px;
+      }
+
+      .box_line_content_number {
+        height: 16px;
+        background: #ea4335;
+        text-align: center;
+        line-height: 16px;
+        font-size: 12px;
+        color: #ffffff;
+        border-radius: 100px;
+        position: absolute;
+        right: 12px;
+        top: 5px;
+        padding-left: 4px;
+        padding-right: 4px;
+        min-width: 16px;
+      }
+
+      .tray_box_line {
+        width: 260px;
+        margin-top: 4px;
+        height: 44px;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        cursor: pointer;
+        position: relative;
+      }
+
+      .tray_box_line:hover {
+        background-color: #f2f3f5;
+      }
+
+      .tray_box_line_icon {
+        width: 32px;
+        height: 32px;
+        margin-left: 12px;
+        background-color: #595ca7;
+        border-radius: 100px;
+        overflow: hidden;
+      }
+
+      .chinese {
+        font-size: 12px;
+      }
+
+      .tray_box_line_icon_text {
+        width: 32px;
+        height: 32px;
+        text-align: center;
+        line-height: 32px;
+        color: white;
+      }
+
+      .tray_box_line_icon_img {
+        width: 32px;
+        height: 32px;
+      }
+
+      .tray_box_line_content {
+        height: 44px;
+        margin-left: 8px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
+
+      .tray_box_line:hover .box_line_content_eye {
+        display: flex;
+      }
+
+      .tray_box_line:hover .box_line_content_number {
+        display: none;
+      }
+
+      .box_line_content_eye {
+        width: 16px;
+        height: 16px;
+        position: absolute;
+        right: 12px;
+        top: 5px;
+        background-image: url("./eyeGray.png");
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center center;
+        display: none;
+      }
+
+      .box_line_content_eye:hover {
+        background-image: url("./eye.png");
+      }
+
+      .box_line_content_name {
+        font-size: 14px;
+        font-weight: 400;
+        color: #333436;
+        line-height: 20px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        width: 146px;
+      }
+
+      .box_line_content_text {
+        width: 180px;
+        font-size: 12px;
+        font-weight: 400;
+        color: #999ba1;
+        line-height: 18px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+
+      .box_line_content_mention {
+        color: #ea4335;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div onmousemove="mouseOver()" onmouseout="mouseOut()" class="tray_parent">
+      <div class="tray_box_title">
+        <div id="tray_title_count" class="tray_title_count">新消息</div>
+        <div onclick="openSetting()" class="tray_title_setting"></div>
+      </div>
+      <div id="tray_box" class="tray_box"></div>
+      <div id="tray_friend_box" onclick="openFriend()" class="tray_friend_box">
+        <div class="tray_friend_box_left">
+          <div class="friend_box_left_icon"></div>
+          <div class="friend_box_left_text">好友请求</div>
+        </div>
+        <div id="tray_box_right" class="tray_box_right"></div>
+      </div>
+      <div class="tray_box_bottom">
+        <a onclick="hideAll()" class="tray_box_bottom_text">忽略全部</a>
+      </div>
+    </div>
+    <script>
+      const Store = require("electron-store");
+      const _ = require("lodash");
+      const store = new Store();
+      const { ipcRenderer } = require("electron");
+      ipcRenderer.on("reload_message_box", (ev, params) => {
+        if (params.type == "bottom") {
+          document.body.style.justifyContent = "flex-end";
+        } else {
+          document.body.style.justifyContent = "flex-start";
+        }
+
+        reload();
+      });
+      reload();
+      function hideAll() {
+        ipcRenderer.send("hide_all_box");
+      }
+      function mouseOver() {
+        ipcRenderer.send("message_box_over");
+      }
+      function mouseOut() {
+        ipcRenderer.send("message_box_out");
+      }
+      function hideItem(id) {
+        ipcRenderer.send("hide_item", { id: id });
+        window.event.stopPropagation();
+      }
+      function openSetting() {
+        ipcRenderer.send("open_setting");
+      }
+      function openPrivate(targetId) {
+        ipcRenderer.send("open_private", {
+          targetId,
+        });
+      }
+      function openFriend() {
+        ipcRenderer.send("open_friend");
+      }
+      function openGuild(guild_id, channel_id, messageId) {
+        ipcRenderer.send("open_guild", {
+          guild_id,
+          channel_id,
+          messageId,
+        });
+      }
+      function truncated(str, num) {
+        return Array.from(str).slice(0, num).join("");
+      }
+      function formatIconText(text = "") {
+        text = `${text.trim()}`;
+        chinese.lastIndex = 0;
+        if (chinese.test(text)) {
+          // 中文开头取前4个字符
+          return {
+            letterType: "chinese",
+            iconText: truncated(text, 2),
+          };
+        }
+        return {
+          iconText: truncated(text, 1),
+          letterType: "english",
+        };
+      }
+
+      function isContained(roles, mroles) {
+        var flag = false;
+        _.forEach(roles, (item) => {
+          _.forEach(mroles, (child) => {
+            if (item == child) {
+              flag = true;
+            }
+          });
+        });
+
+        return flag;
+      }
+      const chinese = /^[\u4e00-\u9fa5]/;
+      function reload() {
+        let guildList = store.get("guildList");
+        let messageAll = store.get("messageAll");
+        let friends = store.get("friends");
+        if (!messageAll) {
+          messageAll = [];
+        }
+        if (!friends) {
+          friends = [];
+        }
+        let size = 0;
+
+        if (friends.length > 0) {
+          let tray_friend_box = document.getElementById("tray_friend_box");
+          tray_friend_box.style.display = "flex";
+          let tray_box_right = document.getElementById("tray_box_right");
+          let numbers = friends.length;
+          if (numbers > 99) {
+            numbers = "99+";
+          }
+          tray_box_right.innerText = `${numbers}`;
+        } else {
+          let tray_friend_box = document.getElementById("tray_friend_box");
+          tray_friend_box.style.display = "none";
+        }
+        messageAll.sort((a, b) => {
+          return b.sentTime - a.sentTime;
+        });
+
+        let allCount = 0;
+        let html = "";
+        _.forEach(messageAll, (item) => {
+          if (item.type == "guild") {
+            let my_nickname = "";
+            let guildInfo = {};
+            _.forEach(guildList, (child) => {
+              if (child.id == _.get(item, "body[0].extra.guild_id", "")) {
+                my_nickname = child.my_nickname;
+                guildInfo = child;
+              }
+            });
+            let message = "";
+            let mention = "";
+            let channel_id = "";
+            let guild_id = "";
+            let messageId = "";
+            let mention_count = 0;
+            _.forEach(item.body, (child, index) => {
+              let title = child.title;
+              title = title.split(" ");
+              let channelName = _.get(title, "[1]", "");
+              channelName = channelName.replace("(", "");
+              title = _.get(title, "[0]", "");
+              if (child.content.indexOf("@全体成员") != -1) {
+                mention = `<span class="box_line_content_mention">[@全体成员]</span>`;
+                message = title + ":" + child.content;
+                channel_id = child.extra.channel_id;
+                guild_id = child.extra.guild_id;
+                messageId = child.extra.msg_id;
+                mention_count = mention_count + 1;
+              } else if (child.content.indexOf("@在线成员") != -1) {
+                mention = `<span class="box_line_content_mention">[@在线成员]</span>`;
+                message = title + ":" + child.content;
+                channel_id = child.extra.channel_id;
+                guild_id = child.extra.guild_id;
+                messageId = child.extra.msg_id;
+                mention_count = mention_count + 1;
+              } else if (child.content.indexOf("@" + my_nickname) != -1) {
+                mention = `<span class="box_line_content_mention">[@我]</span>`;
+                message = title + ":" + child.content;
+                channel_id = child.extra.channel_id;
+                guild_id = child.extra.guild_id;
+                messageId = child.extra.msg_id;
+                mention_count = mention_count + 1;
+              }
+              if (index == item.body.length - 1 && !mention) {
+                mention = `[${channelName}]`;
+                message = title + ":" + child.content;
+                channel_id = child.extra.channel_id;
+                guild_id = child.extra.guild_id;
+                messageId = child.extra.msg_id;
+              }
+            });
+            if (mention_count > 1) {
+              mention = `<span class="box_line_content_mention">[有${mention_count}条提及我]</span>`;
+            }
+            let iconView = "";
+            if (guildInfo.icon) {
+              iconView = `<img src="${guildInfo.icon}" class="tray_box_line_icon_img"></img>`;
+            } else {
+              let { iconText, letterType } = formatIconText(guildInfo.name);
+              iconView = `<div class="tray_box_line_icon_text ${letterType}">${iconText}</div>`;
+            }
+            if (item.isShow && size < 6) {
+              size = size + 1;
+              let count = item.body.length;
+              if (count > 99) {
+                count = "99+";
+              }
+              html =
+                html +
+                `<div onclick="openGuild(\'${guild_id}\',\'${channel_id}\',\'${messageId}\')" class="tray_box_line">
+        <div class="tray_box_line_icon">
+        ${iconView}
+        </div>
+        <div class="tray_box_line_content">
+            <div class="box_line_content_name">${guildInfo.name}</div>
+            <div class="box_line_content_text">${mention}${message}</div>
+            <div class="box_line_content_number">${count}</div>
+            <div class="box_line_content_eye" onclick="hideItem(\'${guild_id}\')"></div>
+        </div>
+    </div>`;
+              allCount = allCount + item.body.length;
+            }
+          } else {
+            let message = "";
+            let targetId = "";
+            if (item.isShow && size < 6) {
+              size = size + 1;
+              let count = item.body.length;
+              if (count > 99) {
+                count = "99+";
+              }
+              let lastBody = item.body[item.body.length - 1];
+              message = lastBody.content;
+              targetId = item.id;
+              html =
+                html +
+                `<div onclick="openPrivate(\'${targetId}\')" class="tray_box_line">
+            <div class="tray_box_line_icon">
+            <img src="${lastBody.avatar}" class="tray_box_line_icon_img"></img>
+            </div>
+            <div class="tray_box_line_content">
+                <div class="box_line_content_name">${lastBody.title}</div>
+                <div class="box_line_content_text">${message}</div>
+                <div class="box_line_content_number">${count}</div>
+                <div class="box_line_content_eye" onclick="hideItem(\'${targetId}\')"></div>
+            </div>
+        </div>`;
+              allCount = allCount + item.body.length;
+            }
+          }
+        });
+        let tray_box = document.getElementById("tray_box");
+        if (size > 0) {
+          tray_box.style.paddingTop = "4px";
+          tray_box.style.paddingBottom = "8px";
+        } else {
+          tray_box.style.paddingTop = "0px";
+          tray_box.style.paddingBottom = "0px";
+        }
+        if (friends.length > 0) {
+          size = size + 1;
+        }
+        ipcRenderer.send("change_size", {
+          size,
+        });
+        let title_count = document.getElementById("tray_title_count");
+        tray_box.innerHTML = html;
+        allCount = allCount + friends.length;
+        if (allCount > 99) {
+          allCount = "99+";
+        }
+        title_count.innerText = `新消息（${allCount}）`;
+      }
+    </script>
+  </body>
+</html>

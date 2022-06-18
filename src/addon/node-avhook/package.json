@@ -1,0 +1,19 @@
+{
+  "name": "avhook",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "node-gyp rebuild --target=8.2.0 --arch=ia32 --dist-url=https://electronjs.org/headers",
+    "install": "node-gyp rebuild"
+  },
+  "dependencies": {
+    "nan": "^2.14.2",
+    "napi": "0.0.0",
+    "node-addon-api": "^3.0.2",
+    "node-assert": "0.0.1"
+  },
+  "gypfile": true,
+  "devDependencies": {}
+}

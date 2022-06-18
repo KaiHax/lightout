@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="80px" height="24px" viewBox="0 0 80 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>矩形</title>
+    <defs>
+        <path d="M19.1427294,0 L60.8572706,0 C67.906566,-4.84764823e-15 74.1253133,4.61353396 76.1696611,11.3598817 L80,24 L80,24 L0,24 L3.83033889,11.3598817 C5.87468668,4.61353396 12.093434,1.29493455e-15 19.1427294,0 Z" id="path-1"></path>
+    </defs>
+    <g id="页面-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="语音频道悬浮" transform="translate(-617.000000, -670.000000)">
+            <g id="展开区域" transform="translate(270.000000, 638.000000)">
+                <g id="展开" transform="translate(347.000000, 32.000000)">
+                    <mask id="mask-2" fill="white">
+                        <use xlink:href="#path-1"></use>
+                    </mask>
+                    <use id="矩形" fill="#F2F3F5" xlink:href="#path-1"></use>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

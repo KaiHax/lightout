@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="zh">
+  <head>
+    <meta charset="utf-8" />
+    <title>开黑啦</title>
+  </head>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+
+    div,
+    p {
+      box-sizing: border-box;
+    }
+
+    body {
+      background-color: #f2f3f5;
+    }
+
+    .go-wild-content {
+      width: 600px;
+      margin: 56px auto 0;
+    }
+
+    .top-logo {
+      display: block;
+      width: 135px;
+      height: 36px;
+      margin: 0 auto 28px 40px;
+    }
+
+    .content {
+      margin-left: 12px;
+      margin-right: 12px;
+      min-height: 148px;
+      padding: 24px 16px;
+      background: #f7f7f8;
+      border-radius: 3px;
+      border: 1px solid #e5e5ea;
+      line-height: 1.5;
+      overflow: hidden;
+    }
+
+    .title {
+      font-size: 16px;
+      font-weight: 600;
+      color: #333436;
+      margin-bottom: 4px;
+    }
+
+    .sub-title {
+      font-size: 12px;
+      font-weight: 400;
+      color: #66686b;
+      margin-bottom: 16px;
+    }
+
+    .url {
+      color: #66686b;
+      font-size: 12px;
+      font-weight: 400;
+      word-break: break-all;
+    }
+    .jump-button {
+      float: right;
+      display: block;
+      width: 98px;
+      height: 42px;
+      background-color: #6666cc;
+      border-radius: 6px;
+      color: white;
+      font-size: 16px;
+      border: 0 none;
+      outline: none;
+      font-weight: 600;
+      cursor: pointer;
+    }
+  </style>
+
+  <body>
+    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <div class="go-wild-content">
+      <img
+        src="/app/assets/images/color-logo@2x.png"
+        alt="logo"
+        class="top-logo"
+      />
+      <div class="content">
+        <div class="title">即将离开开黑啦，跳转到其他网站</div>
+        <div class="sub-title">请注意您的账号和财产安全</div>
+        <div class="url" id="url"></div>
+        <button class="jump-button" onclick="jumpUrl()">继续访问</button>
+      </div>
+    </div>
+    <script type="text/javascript">
+      function getQueryString(name) {
+        var result = window.location.href.match(
+          new RegExp("[\?\&]" + name + "=([^\&]+)", "i")
+        );
+        if (result === null || result.length < 1) {
+          return "";
+        }
+        return result[1];
+      }
+
+      var _url = decodeURIComponent(getQueryString("url"));
+
+      function jumpUrl() {
+        window.location.href = _url;
+      }
+      document.getElementById("url").innerText = _url;
+    </script>
+  </body>
+</html>

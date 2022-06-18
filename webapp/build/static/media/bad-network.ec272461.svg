@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="16px" height="16px" viewBox="0 0 16 16" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>信号</title>
+    <g id="页面-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="信号" transform="translate(-0.000000, 0.000000)">
+            <rect id="矩形" x="0" y="0" width="16" height="16"></rect>
+            <rect id="矩形" opacity="0.2" x="5.68434189e-14" y="0" width="16" height="16"></rect>
+            <path d="M12,2 C12.5522847,2 13,2.44771525 13,3 L13,13 C13,13.5522847 12.5522847,14 12,14 C11.4477153,14 11,13.5522847 11,13 L11,3 C11,2.44771525 11.4477153,2 12,2 Z M8,4.66666667 C8.55228475,4.66666667 9,5.11438192 9,5.66666667 L9,13 C9,13.5522847 8.55228475,14 8,14 C7.44771525,14 7,13.5522847 7,13 L7,5.66666667 C7,5.11438192 7.44771525,4.66666667 8,4.66666667 Z" id="形状结合" fill="#999BA1"></path>
+            <rect id="矩形备份-6" fill="#EA4335" x="3" y="7.33333333" width="2" height="6.66666667" rx="1"></rect>
+        </g>
+    </g>
+</svg>

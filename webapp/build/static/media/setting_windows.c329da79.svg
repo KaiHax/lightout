@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 61 (89581) - https://sketch.com -->
+    <title>图标标识/个人设置/windows</title>
+    <desc>Created with Sketch.</desc>
+    <g id="图标标识/个人设置/windows" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="1.图标占位">
+            <rect id="图标占位" x="0" y="0" width="24" height="24"></rect>
+        </g>
+        <path d="M20.3842782,12.4425668 L20.3842782,19.8865449 L11.776797,18.606544 L11.776797,12.4425668 L20.3842782,12.4425668 Z M11.0157478,5.51224533 L11.0157478,11.7950009 L4.5,11.7950009 L4.5,6.4427422 L11.0157478,5.51224533 Z M20.3842782,4 L20.3842782,11.679251 L11.776797,11.679251 L11.776797,5.28000082 L20.3842782,4 Z" id="形状结合" fill="#BBBEC4"></path>
+        <polygon id="路径" fill="#66686B" points="4.5 17.4430409 11.0157478 18.3735378 11.0157478 12.4425668 4.5 12.4425668"></polygon>
+    </g>
+</svg>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="66px" height="66px" viewBox="0 0 66 66" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>星星</title>
+    <defs>
+        <rect id="path-1" x="0" y="0" width="66" height="66"></rect>
+    </defs>
+    <g id="需求文件" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="浏览器不兼容大窗口" transform="translate(-774.000000, -822.000000)">
+            <g id="星星" transform="translate(774.000000, 822.000000)">
+                <mask id="mask-2" fill="white">
+                    <use xlink:href="#path-1"></use>
+                </mask>
+                <g id="矩形"></g>
+                <polygon id="星形备份-6" fill="#FFDB4E" mask="url(#mask-2)" points="21.108018 47.9270308 14.744057 50.5065702 17.3238376 44.1432041 14.744057 37.7798381 21.108018 40.3593775 27.4719791 37.7798381 24.8921985 44.1432041 27.4719791 50.5065702"></polygon>
+                <polygon id="星形备份-3" fill="#FFDB4E" mask="url(#mask-2)" points="54.5194841 18.379338 53.0793108 28.9788057 46.5323502 20.5194841 35.9328826 19.0793108 44.3922041 12.5323502 45.8323775 1.93288255 52.379338 10.3922041 62.9788057 11.8323775"></polygon>
+            </g>
+        </g>
+    </g>
+</svg>

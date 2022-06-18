@@ -1,0 +1,17 @@
+{
+  "name": "checkadmin",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "node-gyp rebuild --target=8.2.0 --arch=ia32 --dist-url=https://electronjs.org/headers"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bindings": "^1.5.0",
+    "nan": "^2.14.0",
+    "node-gyp": "^3.8.0"
+  }
+}

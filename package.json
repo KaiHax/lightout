@@ -1,0 +1,45 @@
+{
+  "name": "kaiheila",
+  "version": "0.0.51",
+  "buildVersion": "0.0.51.4",
+  "private": true,
+  "description": "",
+  "author": {
+    "name": "开黑啦"
+  },
+  "scripts": {
+    "dev": "electron src/main.js"
+  },
+  "homepage": "https://kaiheila.cn",
+  "main": "src/main.js",
+  "dependencies": {
+    "@electron/remote": "^2.0.1",
+    "@sentry/electron": "^3.0.0",
+    "address": "^1.1.2",
+    "async-mutex": "^0.2.6",
+    "atomically": "^1.7.0",
+    "auto-launch": "^5.0.5",
+    "bindings": "^1.5.0",
+    "compressing": "^1.5.1",
+    "cors": "^2.8.5",
+    "decompress": "^4.2.0",
+    "decompress-unzip": "^4.0.1",
+    "electron-store": "^8.0.1",
+    "express": "^4.17.1",
+    "form": "^0.2.4",
+    "http-proxy-middleware": "^0.20.0",
+    "mime": "^3.0.0",
+    "mkdirp": "^1.0.4",
+    "pump": "^3.0.0",
+    "querystring": "^0.2.0",
+    "request": "^2.88.0",
+    "winreg": "^1.2.4",
+    "winston": "^3.2.1",
+    "winston-daily-rotate-file": "^4.3.0",
+    "ws": "^7.3.0",
+    "xml2js": "^0.4.23"
+  },
+  "devDependencies": {
+	  "electron": "^19.0.4"
+  }
+}

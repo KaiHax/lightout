@@ -1,0 +1,20 @@
+{
+  "name": "screenshot",
+  "version": "1.0.0",
+  "description": "屏幕截图组件",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "http://git.chuanyuapp.com/windows/node-screenshot.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bindings": "^1.5.0",
+    "nan": "^2.15.0",
+    "node-addon-api": "^4.2.0"
+  }
+}

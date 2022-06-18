@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      body {
+        background-color: #fff;
+      }
+    </style>
+  </head>
+  <body>
+    <audio src="./capture.mp3" controls></audio>
+    <div>麦克风音量：<span id="mic-volume"></span></div>
+    <div>麦克风静音：<span id="mic-mute"></span></div>
+    <div>麦克风增强：<span id="mic-boost"></span></div>
+    <div>是否支持麦克风增益：<span id="mic-gain-support"></span></div>
+    <div>麦克风增益：<span id="mic-gain"></span></div>
+    ----------
+    <div>扬声器音量：<span id="speaker-volume"></span></div>
+    <div>当前应用音量：<span id="current-volume"></span></div>
+    ===================
+    <div>
+      设置麦克风：
+      <input id="set-mic" type="range" min="0" max="1" step="0.01" />
+    </div>
+    <div>
+      麦克风静音：
+      <input type="checkbox" id="set-mic-mute" />
+    </div>
+    <div>
+      麦克风增强：
+      <!-- <input type="range" id="set-mic-boost" min="0" max="20" step="10"> -->
+      <input type="range" id="set-mic-boost" />
+    </div>
+    <div>
+      设置增益：
+      <input type="checkbox" id="set-mic-gain" />
+    </div>
+    ----------
+    <div>
+      设置扬声器：
+      <input id="set-speaker" type="range" min="0" max="1" step="0.01" />
+    </div>
+    <div>
+      设置当前应用音量：
+      <input id="set-current-volume" type="range" min="0" max="1" step="0.01" />
+    </div>
+    <button id="refresh">刷新</button>
+    <hr />
+    <div>
+      <select name="" id="device-list"></select>
+    </div>
+    <script src="./test.js"></script>
+  </body>
+</html>

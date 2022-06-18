@@ -1,0 +1,17 @@
+{
+  "name": "audio-ai-helper",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "node-gyp rebuild --target=13.4.0 --arch=ia32 --dist-url=https://electronjs.org/headers",
+    "test": "testrun"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bindings": "^1.5.0",
+    "nan": "^2.15.0",
+    "node-addon-api": "^4.2.0"
+  }
+}

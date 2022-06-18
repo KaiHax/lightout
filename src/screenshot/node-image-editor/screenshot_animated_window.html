@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="zh">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>截屏动画窗口</title>
+    <style>
+      html,
+      body {
+        margin: 0;
+        padding: 0;
+        background-color: transparent;
+      }
+
+      .screenshot-animate {
+        display: none;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: black;
+        opacity: 0.5;
+        transition: all 200ms ease-in;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="screenshot-animate" class="screenshot-animate"></div>
+    <script>
+      // 窗口打开动画导致缩放一下这里延时显示
+      setTimeout(() => {
+        let elmBg = document.getElementById("screenshot-animate");
+        elmBg.style.display = "inline-block";
+        setTimeout(() => {
+          elmBg.style.opacity = 0;
+          setTimeout(() => {
+            window.close();
+          }, 200);
+        });
+      }, 200);
+    </script>
+  </body>
+</html>

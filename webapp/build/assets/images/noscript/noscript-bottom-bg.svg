@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="1876px" height="318px" viewBox="0 0 1876 318" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>黑色背景</title>
+    <defs>
+        <rect id="path-1" x="0" y="0" width="1876" height="318"></rect>
+    </defs>
+    <g id="需求文件" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="浏览器不兼容大窗口" transform="translate(0.000000, -754.000000)">
+            <g id="黑色背景" transform="translate(0.000000, 754.000000)">
+                <mask id="mask-2" fill="white">
+                    <use xlink:href="#path-1"></use>
+                </mask>
+                <g id="矩形"></g>
+                <path d="M1876.01461,0.722155759 L1876,317.995882 L0,317.995882 L-0.0156070241,0.722053235 C256.863222,27.1724344 583.03253,42.995882 938,42.995882 C1292.96701,42.995882 1619.13594,27.1724753 1876.01461,0.722155759 Z" id="形状结合" fill="#2F3237" mask="url(#mask-2)"></path>
+            </g>
+        </g>
+    </g>
+</svg>

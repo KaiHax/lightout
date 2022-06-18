@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="zh">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>崩溃提示</title>
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+
+      html {
+        height: 100%;
+        width: 100%;
+      }
+
+      body {
+        width: 100%;
+        margin: 0;
+        height: 100%;
+        padding: 0;
+      }
+
+      .crash_parent {
+        width: 100%;
+        margin: 0;
+        height: 100%;
+        background-color: #edeef0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .center_img {
+        width: 64px;
+        height: 64px;
+        background-image: url("./crash.png");
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center center;
+      }
+
+      .center_title {
+        font-size: 20px;
+        font-family: PingFangSC-Semibold, PingFang SC;
+        font-weight: 600;
+        color: #333436;
+        line-height: 26px;
+        margin-top: 16px;
+      }
+
+      .center_info {
+        font-size: 14px;
+        font-family: PingFangSC-Regular, PingFang SC;
+        font-weight: 400;
+        color: #66686b;
+        line-height: 20px;
+        margin-top: 8px;
+      }
+
+      .center_info_btn {
+        color: #4285f4;
+        cursor: pointer;
+      }
+
+      .center_bottom_btn {
+        font-size: 14px;
+        font-family: PingFangSC-Semibold, PingFang SC;
+        font-weight: 600;
+        color: #4285f4;
+        line-height: 20px;
+        margin-top: 48px;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="crash_parent">
+      <div class="center_img"></div>
+      <div class="center_title">很抱歉，程序崩溃了</div>
+      <div class="center_info">
+        如果你已多次遇到崩溃，这份<span
+          onclick="openLink()"
+          class="center_info_btn"
+          >帮助文档</span
+        >也许能帮到你
+      </div>
+      <div onclick="reopen()" class="center_bottom_btn">重启客户端</div>
+    </div>
+    <script>
+      const { ipcRenderer } = require("electron");
+      const Store = require("electron-store");
+      const store = new Store();
+      function reopen() {
+        ipcRenderer.send("btn_reopen_app");
+      }
+      function openLink() {
+        ipcRenderer.send("btn_open_link");
+      }
+      let audioChannelInfo = store.get("audioChannelInfo");
+      if (audioChannelInfo) {
+        var mp3 = new Audio("./crash.mp3");
+        mp3.play(); //播放 mp3这个音频对象
+      }
+      //暂停
+      // mp3.pause();
+      // mp3.load();
+    </script>
+  </body>
+</html>

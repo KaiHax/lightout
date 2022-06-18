@@ -1,0 +1,23 @@
+{
+  "author": {
+    "name": "Colin Mitchell",
+    "email": "colin@muffinlabs.com",
+    "url": "http://muffinlabs.com"
+  },
+  "dependencies": {
+    "bindings": "^1.5.0",
+    "nan": "^2.14.0"
+  },
+  "deprecated": false,
+  "description": "Detect if local machine has a fullscreen app running",
+  "devDependencies": {
+    "node-gyp": "^5.0.1",
+    "rimraf": "^2.6.3"
+  },
+  "gypfile": true,
+  "homepage": "https://github.com/muffinista/detect-fullscreen/",
+  "license": "MIT",
+  "main": "index.js",
+  "name": "detect-fullscreen",
+  "version": "0.0.4"
+}

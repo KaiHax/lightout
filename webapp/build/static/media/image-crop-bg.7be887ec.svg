@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="24px" height="236px" viewBox="0 0 24 236" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>上传头像背景</title>
+    <defs>
+        <rect id="path-1" x="0" y="-8.52651283e-14" width="24" height="235.2"></rect>
+        <rect id="path-3" x="0" y="-8.52651283e-14" width="24" height="235.2"></rect>
+    </defs>
+    <g id="会员" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="上传头像背景">
+            <mask id="mask-2" fill="white">
+                <use xlink:href="#path-1"></use>
+            </mask>
+            <use id="bg" fill="#D8D8D8" xlink:href="#path-1"></use>
+            <g id="编组-4" mask="url(#mask-2)">
+                <g transform="translate(-12.000000, 0.000000)">
+                    <g id="编组-3">
+                        <g id="编组" fill="#BBBEC4">
+                            <rect id="矩形备份" x="24" y="0" width="12" height="12"></rect>
+                        </g>
+                        <g id="编组-2" transform="translate(12.000000, 0.000000)" fill="#FFFFFF">
+                            <rect id="矩形" x="0" y="0" width="12" height="12"></rect>
+                        </g>
+                    </g>
+                    <g id="编组-3备份-4" transform="translate(0.000000, 48.000000)">
+                        <g id="编组" fill="#BBBEC4">
+                            <rect id="矩形备份" x="24" y="0" width="12" height="12"></rect>
+                        </g>
+                        <g id="编组-2" transform="translate(12.000000, 0.000000)" fill="#FFFFFF">
+                            <rect id="矩形" x="0" y="0" width="12" height="12"></rect>
+                        </g>
+                    </g>
+                    <g id="编组-3备份-8" transform="translate(0.000000, 96.000000)">
+                        <g id="编组" fill="#BBBEC4">
+                            <rect id="矩形备份" x="24" y="0" width="12" height="12"></rect>
+                        </g>
+                        <g id="编组-2" transform="translate(12.000000, 0.000000)" fill="#FFFFFF">
+                            <rect id="矩形" x="0" y="0" width="12" height="12"></rect>
+                        </g>
+                    </g>
+                    <g id="编组-3备份-12" transform="translate(0.000000, 144.000000)">
+                        <g id="编组" fill="#BBBEC4">
+                            <rect id="矩形备份" x="24" y="0" width="12" height="12"></rect>
+                        </g>
+                        <g id="编组-2" transform="translate(12.000000, 0.000000)" fill="#FFFFFF">
+                            <rect id="矩形" x="0" y="0" width="12" height="12"></rect>
+                        </g>
+                    </g>
+                    <g id="编组-3备份-16" transform="translate(0.000000, 192.000000)">
+                        <g id="编组" fill="#BBBEC4">
+                            <rect id="矩形备份" x="24" y="0" width="12" height="12"></rect>
+                        </g>
+                        <g id="编组-2" transform="translate(12.000000, 0.000000)" fill="#FFFFFF">
+                            <rect id="矩形" x="0" y="0" width="12" height="12"></rect>
+                        </g>
+                    </g>
+                    <g id="编组-3备份-2" transform="translate(0.000000, 24.000000)">
+                        <g id="编组" fill="#BBBEC4">
+                            <rect id="矩形备份" x="24" y="0" width="12" height="12"></rect>
+                        </g>
+                        <g id="编组-2" transform="translate(12.000000, 0.000000)" fill="#FFFFFF">
+                            <rect id="矩形" x="0" y="0" width="12" height="12"></rect>
+                        </g>
+                    </g>
+                    <g id="编组-3备份-5" transform="translate(0.000000, 72.000000)">
+                        <g id="编组" fill="#BBBEC4">
+                            <rect id="矩形备份" x="24" y="0" width="12" height="12"></rect>
+                        </g>
+                        <g id="编组-2" transform="translate(12.000000, 0.000000)" fill="#FFFFFF">
+                            <rect id="矩形" x="0" y="0" width="12" height="12"></rect>
+                        </g>
+                    </g>
+                    <g id="编组-3备份-9" transform="translate(0.000000, 120.000000)">
+                        <g id="编组" fill="#BBBEC4">
+                            <rect id="矩形备份" x="24" y="0" width="12" height="12"></rect>
+                        </g>
+                        <g id="编组-2" transform="translate(12.000000, 0.000000)" fill="#FFFFFF">
+                            <rect id="矩形" x="0" y="0" width="12" height="12"></rect>
+                        </g>
+                    </g>
+                    <g id="编组-3备份-13" transform="translate(0.000000, 168.000000)">
+                        <g id="编组" fill="#BBBEC4">
+                            <rect id="矩形备份" x="24" y="0" width="12" height="12"></rect>
+                        </g>
+                        <g id="编组-2" transform="translate(12.000000, 0.000000)" fill="#FFFFFF">
+                            <rect id="矩形" x="0" y="0" width="12" height="12"></rect>
+                        </g>
+                    </g>
+                    <g id="编组-3备份-17" transform="translate(0.000000, 216.000000)">
+                        <g id="编组" fill="#BBBEC4">
+                            <rect id="矩形备份" x="24" y="0" width="12" height="12"></rect>
+                        </g>
+                        <g id="编组-2" transform="translate(12.000000, 0.000000)" fill="#FFFFFF">
+                            <rect id="矩形" x="0" y="0" width="12" height="12"></rect>
+                        </g>
+                    </g>
+                    <g id="编组-3备份" transform="translate(12.000000, 12.000000)">
+                        <g id="编组" fill="#BBBEC4">
+                            <rect id="矩形备份-33" x="0" y="0" width="12" height="12"></rect>
+                        </g>
+                        <g id="编组-2" transform="translate(12.000000, 0.000000)" fill="#FFFFFF">
+                            <rect id="矩形" x="0" y="0" width="12" height="12"></rect>
+                        </g>
+                    </g>
+                    <g id="编组-3备份-6" transform="translate(12.000000, 60.000000)">
+                        <g id="编组" fill="#BBBEC4">
+                            <rect id="矩形备份-33" x="0" y="0" width="12" height="12"></rect>
+                        </g>
+                        <g id="编组-2" transform="translate(12.000000, 0.000000)" fill="#FFFFFF">
+                            <rect id="矩形" x="0" y="0" width="12" height="12"></rect>
+                        </g>
+                    </g>
+                    <g id="编组-3备份-10" transform="translate(12.000000, 108.000000)">
+                        <g id="编组" fill="#BBBEC4">
+                            <rect id="矩形备份-33" x="0" y="0" width="12" height="12"></rect>
+                        </g>
+                        <g id="编组-2" transform="translate(12.000000, 0.000000)" fill="#FFFFFF">
+                            <rect id="矩形" x="0" y="0" width="12" height="12"></rect>
+                        </g>
+                    </g>
+                    <g id="编组-3备份-14" transform="translate(12.000000, 156.000000)">
+                        <g id="编组" fill="#BBBEC4">
+                            <rect id="矩形备份-33" x="0" y="0" width="12" height="12"></rect>
+                        </g>
+                        <g id="编组-2" transform="translate(12.000000, 0.000000)" fill="#FFFFFF">
+                            <rect id="矩形" x="0" y="0" width="12" height="12"></rect>
+                        </g>
+                    </g>
+                    <g id="编组-3备份-18" transform="translate(12.000000, 204.000000)">
+                        <g id="编组" fill="#BBBEC4">
+                            <rect id="矩形备份-33" x="0" y="0" width="12" height="12"></rect>
+                        </g>
+                        <g id="编组-2" transform="translate(12.000000, 0.000000)" fill="#FFFFFF">
+                            <rect id="矩形" x="0" y="0" width="12" height="12"></rect>
+                        </g>
+                    </g>
+                    <g id="编组-3备份-3" transform="translate(12.000000, 36.000000)">
+                        <g id="编组" fill="#BBBEC4">
+                            <rect id="矩形备份-33" x="0" y="0" width="12" height="12"></rect>
+                        </g>
+                        <g id="编组-2" transform="translate(12.000000, 0.000000)" fill="#FFFFFF">
+                            <rect id="矩形" x="0" y="0" width="12" height="12"></rect>
+                        </g>
+                    </g>
+                    <g id="编组-3备份-7" transform="translate(12.000000, 84.000000)">
+                        <g id="编组" fill="#BBBEC4">
+                            <rect id="矩形备份-33" x="0" y="0" width="12" height="12"></rect>
+                        </g>
+                        <g id="编组-2" transform="translate(12.000000, 0.000000)" fill="#FFFFFF">
+                            <rect id="矩形" x="0" y="0" width="12" height="12"></rect>
+                        </g>
+                    </g>
+                    <g id="编组-3备份-11" transform="translate(12.000000, 132.000000)">
+                        <g id="编组" fill="#BBBEC4">
+                            <rect id="矩形备份-33" x="0" y="0" width="12" height="12"></rect>
+                        </g>
+                        <g id="编组-2" transform="translate(12.000000, 0.000000)" fill="#FFFFFF">
+                            <rect id="矩形" x="0" y="0" width="12" height="12"></rect>
+                        </g>
+                    </g>
+                    <g id="编组-3备份-15" transform="translate(12.000000, 180.000000)">
+                        <g id="编组" fill="#BBBEC4">
+                            <rect id="矩形备份-33" x="0" y="0" width="12" height="12"></rect>
+                        </g>
+                        <g id="编组-2" transform="translate(12.000000, 0.000000)" fill="#FFFFFF">
+                            <rect id="矩形" x="0" y="0" width="12" height="12"></rect>
+                        </g>
+                    </g>
+                    <g id="编组-3备份-19" transform="translate(12.000000, 228.000000)">
+                        <g id="编组" fill="#BBBEC4">
+                            <rect id="矩形备份-33" x="0" y="0" width="12" height="12"></rect>
+                        </g>
+                        <g id="编组-2" transform="translate(12.000000, 0.000000)" fill="#FFFFFF">
+                            <rect id="矩形" x="0" y="0" width="12" height="12"></rect>
+                        </g>
+                    </g>
+                </g>
+            </g>
+            <mask id="mask-4" fill="white">
+                <use xlink:href="#path-3"></use>
+            </mask>
+            <use id="bg" fill-opacity="0.6" fill="#000000" xlink:href="#path-3"></use>
+        </g>
+    </g>
+</svg>

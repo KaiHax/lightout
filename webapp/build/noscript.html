@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="zh">
+  <head>
+    <meta charset="utf-8" />
+    <title>开黑啦</title>
+  </head>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+
+    div,
+    p {
+      box-sizing: border-box;
+    }
+
+    body {
+      background-color: #6666cc;
+      background-image: url("/app/assets/images/noscript/noscript-bg.svg");
+      background-size: 100% 100%;
+      background-repeat: no-repeat;
+    }
+
+    html,
+    body,
+    .page {
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+    }
+
+    .page {
+      position: relative;
+    }
+
+    .main-content {
+      position: absolute;
+      left: 0;
+      width: 100%;
+      height: 276px;
+      top: 50%;
+      margin-top: -138px;
+      text-align: center;
+    }
+
+    .windows .main-content {
+      margin-top: -296px;
+    }
+
+    .main-title {
+      height: 50px;
+      font-size: 36px;
+      font-weight: 600;
+      color: #ffffff;
+      line-height: 50px;
+      margin-bottom: 24px;
+    }
+
+    .sub-title {
+      height: 22px;
+      font-size: 16px;
+      font-weight: 400;
+      color: rgba(230, 234, 240, 0.7);
+      line-height: 22px;
+    }
+
+    .browser-item {
+      display: inline-block;
+      width: 120px;
+      padding-top: 32px;
+      text-align: center;
+      margin-right: 20px;
+    }
+
+    .browser-item.last {
+      margin-right: 0;
+    }
+
+    .browser-img {
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+      width: 56px;
+      height: 56px;
+      margin-bottom: 28px;
+    }
+
+    .browser-name {
+      font-size: 14px;
+      font-weight: 400;
+      color: #e6eaf0;
+      line-height: 20px;
+    }
+
+    .bottom {
+      position: absolute;
+      display: none;
+      left: 0;
+      bottom: 0;
+      height: 317px;
+      width: 100%;
+      box-sizing: border-box;
+      padding-top: 100px;
+      text-align: center;
+      background-image: url("/app/assets/images/noscript/noscript-bottom-bg.svg");
+      background-repeat: no-repeat;
+      background-position-y: bottom;
+      background-position-x: center;
+      background-size: 100% 100%;
+    }
+
+    .windows .bottom {
+      display: block;
+    }
+
+    .bottom-big-title {
+      font-size: 24px;
+      font-weight: 600;
+      color: #ffffff;
+      line-height: 1.5;
+      margin-bottom: 16px;
+    }
+
+    .bottom-big-title .title-text {
+      display: inline-block;
+      position: relative;
+    }
+
+    .bottom-big-title .star {
+      width: 66px;
+      height: 66px;
+      position: absolute;
+      right: 100%;
+      bottom: 0;
+    }
+
+    .bottom-sub-title {
+      font-size: 14px;
+      font-weight: 400;
+      color: rgba(230, 234, 240, 0.7);
+      line-height: 20px;
+      margin-bottom: 40px;
+    }
+
+    .download-btn {
+      width: 209px;
+      height: 48px;
+      padding-top: 12px;
+      box-sizing: border-box;
+      background: #6666cc;
+      border-radius: 28px;
+      display: inline-block;
+      cursor: pointer;
+    }
+
+    .download-btn.gray {
+      opacity: 0.5;
+    }
+
+    .download-btn .icon {
+      width: 25px;
+      height: 24px;
+      vertical-align: middle;
+    }
+
+    .download-btn .text {
+      font-size: 20px;
+      font-weight: 600;
+      color: #ffffff;
+      margin-left: 2px;
+      display: inline-block;
+      vertical-align: middle;
+    }
+  </style>
+
+  <body class="windows">
+    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <div class="page">
+      <div class="main-content">
+        <div class="main-title">当前浏览器版本过低，不支持使用开黑啦</div>
+        <div class="sub-title">你也可以更换以下浏览器使用开黑啦</div>
+        <div class="browser-list">
+          <div class="browser-item">
+            <img
+              src="/app/assets/images/noscript/Chrome.png"
+              class="browser-img"
+              alt=""
+            />
+            <div class="browser-name">Chrome</div>
+          </div>
+          <div class="browser-item">
+            <img
+              src="/app/assets/images/noscript/sogo.png"
+              class="browser-img"
+              alt=""
+            />
+            <div class="browser-name">搜狗浏览器</div>
+          </div>
+          <div class="browser-item">
+            <img
+              src="/app/assets/images/noscript/qq.png"
+              class="browser-img"
+              alt=""
+            />
+            <div class="browser-name">QQ浏览器</div>
+          </div>
+          <div class="browser-item">
+            <img
+              src="/app/assets/images/noscript/360.png"
+              class="browser-img"
+              alt=""
+            />
+            <div class="browser-name">360安全浏览器</div>
+          </div>
+          <div class="browser-item">
+            <img
+              src="/app/assets/images/noscript/uc.png"
+              class="browser-img"
+              alt=""
+            />
+            <div class="browser-name">UC浏览器</div>
+          </div>
+          <div class="browser-item">
+            <img
+              src="/app/assets/images/noscript/edge.png"
+              class="browser-img"
+              alt=""
+            />
+            <div class="browser-name">Microsoft Edge</div>
+          </div>
+        </div>
+      </div>
+      <div class="bottom">
+        <div class="bottom-big-title">
+          <div class="title-text">
+            使用开黑啦客户端
+            <img
+              src="/app/assets/images/noscript/star.svg"
+              alt=""
+              class="star"
+            />
+          </div>
+        </div>
+        <div class="bottom-sub-title">
+          客户端可体验更多功能：更优的性能、游戏内覆盖、伴奏等更多的内容。
+        </div>
+        <a class="download-btn gray" id="download-btn" href="" target="_blank">
+          <?xml version="1.0" standalone="no"?>
+          <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+          <svg
+            t="1646294017377"
+            class="icon"
+            viewBox="0 0 1024 1024"
+            version="1.1"
+            xmlns="http://www.w3.org/2000/svg"
+            p-id="6249"
+            xmlns:xlink="http://www.w3.org/1999/xlink"
+            width="200"
+            height="200"
+          >
+            <defs>
+              <style type="text/css"></style>
+            </defs>
+            <path
+              d="M768 768a42.666667 42.666667 0 1 1 0 85.333333H256a42.666667 42.666667 0 0 1 0-85.333333h512zM512.128 128a42.666667 42.666667 0 0 1 42.666667 42.666667v376.661333l150.826666-150.826667a42.666667 42.666667 0 0 1 56.618667-3.328l3.712 3.328a42.666667 42.666667 0 0 1 3.328 56.618667l-3.328 3.712-223.658667 223.701333a42.666667 42.666667 0 0 1-56.618666 3.285334l-3.712-3.285334-223.701334-223.701333A42.666667 42.666667 0 0 1 314.88 393.173333l3.712 3.328 150.869333 150.826667V170.666667a42.666667 42.666667 0 0 1 42.666667-42.666667z"
+              fill="#FFFFFF"
+              p-id="6250"
+            ></path>
+          </svg>
+          <span class="text">下载客户端</span>
+        </a>
+      </div>
+    </div>
+
+    <script type="text/javascript">
+      function requestGet(requrl, callback) {
+        var xmlhttp = null;
+        if (window.XMLHttpRequest) {
+          xmlhttp = new XMLHttpRequest();
+        } else if (window.ActiveXObject) {
+          xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+        }
+        if (xmlhttp != null) {
+          xmlhttp.open("GET", requrl, true);
+          xmlhttp.onreadystatechange = function () {
+            if (
+              xmlhttp.readyState == 4 &&
+              (xmlhttp.status == 200 || xmlhttp.status == 204)
+            ) {
+              var d = xmlhttp.responseText;
+              // 处理返回结果
+              if (callback) {
+                var json = {};
+                try {
+                  json = JSON.parse(d); //ie 89 ff ch
+                } catch (e) {
+                  json = eval("(" + d + ")"); //ie7
+                }
+                callback(json);
+              }
+            }
+          };
+          xmlhttp.send();
+        } else {
+          alert("您的浏览器不支持AJAX！");
+        }
+      }
+
+      if (/macintosh|mac os x/i.test(navigator.userAgent)) {
+        if (document.body.classList) {
+          document.body.classList.remove("windows");
+        } else {
+          document.body.className = document.body.className.replace(
+            /(^|\s+)windows(?=$|\s+)/,
+            ""
+          );
+        }
+      }
+      requestGet(
+        "/api/v2/updates/latest-version?platform=windows",
+        function (res) {
+          var link = res.url;
+          var downloadBtn = document.getElementById("download-btn");
+          downloadBtn.href = link;
+          if (downloadBtn.classList) {
+            downloadBtn.classList.remove("gray");
+          } else {
+            downloadBtn.className = downloadBtn.className.replace(
+              /(^|\s+)gray(?=$|\s+)/,
+              ""
+            );
+          }
+        }
+      );
+    </script>
+  </body>
+</html>

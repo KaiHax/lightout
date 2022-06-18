@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="zh">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+
+      html {
+        height: 100%;
+      }
+
+      body {
+        padding: 20px 30px;
+        margin: 0;
+        height: 100%;
+        overflow: hidden;
+      }
+
+      .warpper {
+        position: relative;
+        height: 100%;
+      }
+
+      .isbottom #content-box {
+        bottom: 0;
+        flex-direction: column-reverse;
+      }
+
+      .isbottom .user-list {
+        flex-direction: column-reverse;
+      }
+
+      .isbottom .user-list li {
+        margin-bottom: 0;
+        margin-top: 8px;
+      }
+
+      .isright #content-box {
+        right: 0;
+      }
+
+      #content-box {
+        font-size: 14px;
+        position: absolute;
+        display: flex;
+        flex-direction: column;
+      }
+
+      .user-list {
+        display: inline-flex;
+        flex-direction: column;
+        padding: 0;
+        margin: 0;
+        list-style: none;
+        color: #fff;
+      }
+
+      .user-list .icon {
+        position: absolute;
+        /* left: 0; */
+        width: 1.857em;
+        height: 1.857em;
+        border-radius: 50%;
+        background-color: #fff;
+        background-size: contain;
+        vertical-align: middle;
+      }
+
+      .isright .user-list li {
+        text-align: right;
+      }
+
+      .isright .user-list .icon {
+        right: 0;
+      }
+
+      .isright .user-list .content {
+        margin-right: 0.928em;
+        margin-left: 0;
+        padding-right: 1.214em;
+        padding-left: 0.2857em;
+      }
+
+      .isright .user-list.message-event .content {
+        margin-left: 0;
+        margin-right: 2.1428em;
+      }
+
+      .user-list li {
+        min-height: 1.86em;
+        position: relative;
+        margin-bottom: 8px;
+      }
+
+      .user-list .content {
+        display: inline-block;
+        margin-left: 0.928em;
+        margin-top: 0.142em;
+        padding-left: 1.214em;
+        padding-right: 0.2857em;
+        border-radius: 0.2857em;
+        background-color: rgba(64, 65, 68, 0.9);
+      }
+
+      .user-list.message-event .content {
+        display: inline-block;
+        margin-left: 2.1428em;
+        padding-left: 0.2857em;
+      }
+
+      .message-content {
+        max-width: 15.857em;
+        overflow: hidden;
+        line-height: 1.45;
+        text-overflow: ellipsis;
+        /* white-space: nowrap; */
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 2;
+        color: rgba(255, 255, 255, 0.5);
+      }
+
+      .user-list .user-name {
+        display: inline-block;
+        vertical-align: middle;
+        line-height: 1.5;
+        max-width: 10.714em;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+      }
+
+      .mute-icon {
+        display: inline-block;
+        margin-left: 0.214em;
+        width: 1.142em;
+        height: 1.142em;
+        background-size: contain;
+        background-image: url("./mute.svg");
+        vertical-align: middle;
+      }
+
+      .mute-icon.input {
+        background-image: url("./inputmute.svg");
+      }
+
+      .channel-join {
+        margin-left: 0.3571em;
+        color: #43b580;
+        vertical-align: middle;
+      }
+
+      .channel-leave {
+        margin-left: 0.3571em;
+        color: #fda700;
+      }
+
+      .hidebr + br {
+        display: none;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="warpper">
+      <div id="content-box" style="visibility: hidden">
+        <!-- <div class="warpper isbottom">
+    <div id="content-box" style="font-size: 20px;"> -->
+        <ul class="user-list self-event"></ul>
+        <ul class="user-list channel-event"></ul>
+        <ul class="user-list message-event"></ul>
+        <ul class="user-list user-event"></ul>
+      </div>
+    </div>
+    <script src="index.js"></script>
+  </body>
+</html>
