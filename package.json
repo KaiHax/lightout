@@ -8,7 +8,8 @@
     "name": "开黑啦"
   },
   "scripts": {
-    "dev": "electron src/main.js"
+    "dev": "electron src/main.js",
+	"pack": "electron-builder -wm --linux appimage deb pacman rpm tar.gz"
   },
   "homepage": "https://kaiheila.cn",
   "main": "src/main.js",
@@ -24,6 +25,7 @@
     "cors": "^2.8.5",
     "decompress": "^4.2.0",
     "decompress-unzip": "^4.0.1",
+    "electron-builder": "^23.0.3",
     "electron-store": "^8.0.1",
     "express": "^4.17.1",
     "form": "^0.2.4",
@@ -40,6 +42,6 @@
     "xml2js": "^0.4.23"
   },
   "devDependencies": {
-	  "electron": "^19.0.4"
+    "electron": "^19.0.4"
   }
 }
