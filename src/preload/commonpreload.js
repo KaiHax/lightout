@@ -1,5 +1,5 @@
 const { ipcRenderer } = require("electron"),
-  r = require("path"),
+  path = require("path"),
   requireRemote = require("@electron/remote").require,
   i = require("./win");
 let n = requireRemote("./config.json");
@@ -12,5 +12,5 @@ global.Kaiheila = {
   System: requireRemote("./common/system.js"),
   store: requireRemote("./storage/store"),
   getBrowserPreload: () =>
-    "file:///" + r.join(__dirname, "../browser/preload-jsbridge.js"),
+    "file:///" + path.join(__dirname, "../browser/preload-jsbridge.js"),
 };

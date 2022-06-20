@@ -5,8 +5,8 @@ o.init({
   dsn: "https://a5c4ab752d6b4699a5086d2c832493d2@o1128081.ingest.sentry.io/6170400",
 });
 const {
-    app: n,
-    BrowserWindow: t,
+    app: app,
+    BrowserWindow,
     Menu: i,
     session: r,
     screen: s,
@@ -77,7 +77,7 @@ function I() {
         B();
       }));
   }
-  (z = new t({
+  (z = new BrowserWindow({
     title: "开黑啦",
     width: Math.min(e.size.width - 70, o.width),
     height: Math.min(e.size.height - 50, o.height),
@@ -92,7 +92,7 @@ function I() {
       preload: p.join(__dirname, "preload/preload.js"),
     },
   })),
-    (t.mainWindow = z),
+    (BrowserWindow.mainWindow = z),
     L &&
       o.isMaximized &&
       setTimeout(() => {
@@ -110,7 +110,7 @@ function I() {
       e.preventDefault(), _.open({ url: o });
     }),
     z.webContents.on("render-process-gone", (e, o) => {
-      if ("killed" === (o = o || {}).reason) return n.exit();
+      if ("killed" === (o = o || {}).reason) return app.exit();
       let t = M.get("audioChannelInfo"),
         i = M.get("reconnetTime");
       var r = new Date().getTime();
@@ -163,23 +163,23 @@ function I() {
     z.on("close", function (e) {
       h.get(w.win_close_to_tray, m.get(m.keys.win_close_to_tray, !0))
         ? (e.preventDefault(), z.hide())
-        : n.exit();
+        : app.exit();
     }),
     (function () {
-      if (q) U = new q();
+      /*if (q) U = new q();
       else {
         let e = d.createFromPath(p.join(__dirname, "../resourse/kaiheila.ico"));
         (j = new u(e)),
           j.setToolTip(b.productName),
           j.on("click", () => {
-            const { mainWindow: e } = t;
+            const { mainWindow: e } = BrowserWindow;
             e && !e.isDestroyed() && (e.isMinimized() && e.restore(), e.show());
           });
         const o = i.buildFromTemplate([
           {
             label: "显示主界面",
             click: () => {
-              const { mainWindow: e } = t;
+              const { mainWindow: e } = BrowserWindow;
               e &&
                 !e.isDestroyed() &&
                 (e.isMinimized() && e.restore(), e.show());
@@ -190,44 +190,44 @@ function I() {
             click: () => {
               const { session: e } = require("electron");
               e.defaultSession.cookies.flushStore().finally(() => {
-                e.defaultSession.flushStorageData(), y.info("[exit]"), n.exit();
+                e.defaultSession.flushStorageData(), y.info("[exit]"), app.exit();
               });
             },
           },
         ]);
         j.setContextMenu(o);
-      }
+      }*/ //comment out kaiheila's tray icon as it seems remarkably broken
     })();
 }
 function B() {
   new k().createWindow(() => {
-    n.relaunch({ args: process.argv.slice(1).concat(["--relaunch"]) }),
-      n.exit(0);
+    app.relaunch({ args: process.argv.slice(1).concat(["--relaunch"]) }),
+      app.exit(0);
   });
 }
 let U = null,
   j = null;
 let F = !f.getHardwareAcceleration();
 y.info("[disableHardwareAcceleration]", F),
-  n.commandLine.appendSwitch("disable-accelerated-2d-canvas"),
+  app.commandLine.appendSwitch("disable-accelerated-2d-canvas"),
   F &&
-    (n.disableHardwareAcceleration(),
-    n.commandLine.appendSwitch("in-process-gpu"),
-    n.commandLine.appendSwitch("disable-software-rasterizer")),
-  n.commandLine.appendSwitch(
+    (app.disableHardwareAcceleration(),
+    app.commandLine.appendSwitch("in-process-gpu"),
+    app.commandLine.appendSwitch("disable-software-rasterizer")),
+  app.commandLine.appendSwitch(
     "disable-features",
     "SameSiteByDefaultCookies,CookiesWithoutSameSiteMustBeSecure"
   ),
-  n.setAppUserModelId("cn.kaiheila.pc"),
-  n.on("window-all-closed", function () {
-    n.quit();
+  app.setAppUserModelId("cn.kaiheila.pc"),
+  app.on("window-all-closed", function () {
+    app.quit();
   }),
-  n.on("activate", function () {
+  app.on("activate", function () {
     null === z ? I() : z.show();
   });
 let W = [],
   A = [];
-n.on("certificate-error", (e, o, n, t, i, r) => {
+app.on("certificate-error", (e, o, n, t, i, r) => {
   let s = "";
   try {
     s = new URL(n).hostname;
@@ -248,21 +248,21 @@ n.on("certificate-error", (e, o, n, t, i, r) => {
     ? (e.preventDefault(), W.push(s), r(!0))
     : 1 == a && (A.push(s), r(!1));
 }),
-  n.on("child-process-gone", (e, o) => {
+  app.on("child-process-gone", (e, o) => {
     y.error("[app] [child-process-gone]", o);
   }),
-  n.on("render-process-gone", (e, o, n) => {
+  app.on("render-process-gone", (e, o, n) => {
     y.error(
       "[app] [render-process-gone]",
       { id: o.id, mainFrame: o.mainFrame, options: o.browserWindowOptions },
       n
     );
   });
-n.requestSingleInstanceLock()
-  ? (n.on("second-instance", (e, o) => {
+app.requestSingleInstanceLock()
+  ? (app.on("second-instance", (e, o) => {
       z && (z.isMinimized() && z.restore(), z.show());
     }),
-    n.on("ready", function () {
+    app.on("ready", function () {
       console.log(new Date(), "[startup] ready"),
         y.info("[appready]", process.argv),
         a.on("resume", () => {
@@ -352,14 +352,15 @@ n.requestSingleInstanceLock()
           }
         );
     }))
-  : n.quit();
+  : app.quit();
 const { crashReporter: $ } = require("electron");
-$.start({
-  productName: "Kaiheila",
-  companyName: "逍遥一下",
-  submitURL: "",
-  uploadToServer: !1,
-}),
+
+//CUSTOM LIGHTOUT CODE
+
+require("./lightout/stub-tray.js")(); // a stub tray while i debug the real one
+
+//END OF CUSTOM LIGHTOUT CODE
+
   process.on("uncaughtException", (e, o) => {
     y.error("[uncaughtException]", e, o);
   }),
