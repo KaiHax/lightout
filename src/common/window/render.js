@@ -1,17 +1,17 @@
-const { ipcRenderer: o } = require("electron");
+const { ipcRenderer } = require("electron");
 module.exports = {
-  open(e) {
-    const n = o.sendSync("common-window-open", e);
+  open(event) {
+    const opened = ipcRenderer.sendSync("common-window-open", event);
     return {
       close() {
-        o.send("common-window-close", n);
+        ipcRenderer.send("common-window-close", opened);
       },
     };
   },
-  restorePosition(e) {
-    o.send("common-window-restore-position", e);
+  restorePosition(event) {
+    ipcRenderer.send("common-window-restore-position", event);
   },
-  close(e) {
-    o.send("common-window-close", e);
+  close(event) {
+    ipcRenderer.send("common-window-close", event);
   },
 };
