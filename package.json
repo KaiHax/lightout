@@ -1,12 +1,10 @@
 {
-  "name": "kaiheila",
+  "name": "Kaiheila",
   "version": "0.0.51",
   "buildVersion": "0.0.51.4",
   "private": true,
   "description": "",
-  "author": {
-    "name": "开黑啦"
-  },
+  "author": "北京逍遥一下科技有限公司",
   "scripts": {
     "dev": "electron src/main.js",
     "pack": "electron-builder --windows NSIS --linux appimage pacman tar.gz"
@@ -21,7 +19,7 @@
     "async-mutex": "^0.2.6",
     "atomically": "^1.7.0",
     "auto-launch": "^5.0.5",
-    "bindings": "^1.5.0",
+	"bindings": "^1.5.0",
     "compressing": "^1.5.1",
     "cors": "^2.8.5",
     "decompress": "^4.2.0",
@@ -48,12 +46,12 @@
   },
   "build": {
     "appId": "cn.kaiheila.pc",
+	"productName": "开黑啦",
     "linux": {
       "maintainer": "DustyAngel47"
     },
-    "files": [
-      "*",
-      "**"
-    ]
+	"win": {
+
+	}
   }
 }
