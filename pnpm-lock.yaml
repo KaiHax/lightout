@@ -4,6 +4,7 @@ specifiers:
   '@electron/remote': ^2.0.1
   '@sentry/electron': ^3.0.0
   address: ^1.1.2
+  ajv: ^8.11.0
   async-mutex: ^0.2.6
   atomically: ^1.7.0
   auto-launch: ^5.0.5
@@ -19,7 +20,7 @@ specifiers:
   express: ^4.17.1
   form: ^0.2.4
   http-proxy-middleware: ^0.20.0
-  mime: ^3.0.0
+  mime: ^1
   mkdirp: ^1.0.4
   pump: ^3.0.0
   querystring: ^0.2.0
@@ -34,6 +35,7 @@ dependencies:
   '@electron/remote': 2.0.8_electron@19.0.4
   '@sentry/electron': 3.0.7
   address: 1.2.0
+  ajv: 8.11.0
   async-mutex: 0.2.6
   atomically: 1.7.0
   auto-launch: 5.0.5
@@ -46,7 +48,7 @@ dependencies:
   express: 4.18.1
   form: 0.2.4
   http-proxy-middleware: 0.20.0
-  mime: 3.0.0
+  mime: 1.6.0
   mkdirp: 1.0.4
   pump: 3.0.0
   querystring: 0.2.1
@@ -2119,12 +2121,6 @@ packages:
     engines: {node: '>=4.0.0'}
     hasBin: true
     dev: true
-
-  /mime/3.0.0:
-    resolution: {integrity: sha512-jSCU7/VB1loIWBZe14aEYHU/+1UMEHoaO7qxCOVJOw9GgH72VAWppxNcjU+x9a2k3GSIBXNKxXQFqRvvZ7vr3A==}
-    engines: {node: '>=10.0.0'}
-    hasBin: true
-    dev: false
 
   /mimic-fn/2.1.0:
     resolution: {integrity: sha512-OqbOk5oEQeAZ8WXWydlu9HJjz9WVdEIvamMCcXmuqUYjTknH/sqsWvhQ3vgwKFRR1HpjvNBKQ37nbJgYzGqGcg==}

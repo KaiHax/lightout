@@ -17,6 +17,7 @@
     "@electron/remote": "^2.0.1",
     "@sentry/electron": "^3.0.0",
     "address": "^1.1.2",
+    "ajv": "^8.11.0",
     "async-mutex": "^0.2.6",
     "atomically": "^1.7.0",
     "auto-launch": "^5.0.5",
@@ -29,7 +30,7 @@
     "express": "^4.17.1",
     "form": "^0.2.4",
     "http-proxy-middleware": "^0.20.0",
-    "mime": "^3.0.0",
+    "mime": "^1",
     "mkdirp": "^1.0.4",
     "pump": "^3.0.0",
     "querystring": "^0.2.0",
@@ -47,8 +48,12 @@
   },
   "build": {
     "appId": "cn.kaiheila.pc",
-	"linux": {
-	  "maintainer": "DustyAngel47"
-	}
+    "linux": {
+      "maintainer": "DustyAngel47"
+    },
+    "files": [
+      "*",
+      "**"
+    ]
   }
 }
